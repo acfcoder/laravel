@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +13,25 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+
 
 Route::get('/', function () {
+    return view('home');
+});
+*/
+
+Route::get('/', [NewsController::class, 'index']);
+
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/noticia', function () {
+    return view('noticia');
+});
+
+Route::get('/noticia/{id}', [NewsController::class, 'mostrar']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +43,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

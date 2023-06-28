@@ -16,13 +16,14 @@ class NewsFactory extends Factory
      */
     public function definition(): array
     {
+
         $title = $this->faker->text;
-        $title = substr($title, 0, 255); // Limitar a 255 caracteres
+        $title = substr($title, 0, 25); // Limitar a 255 caracteres
 
         return [
             'title' => $title,
             'content' => $this->faker->text,
-            'author' => $this->faker->text,
+            'author' => $this->faker->name,
             'pub_date' => now(),
             'image' => "https://picsum.photos/id/" . rand(1, 300) . "/300/300"
         ];
